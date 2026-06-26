@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: ccsun-todolist
+    runtime: python
+    buildCommand: pip install --no-cache-dir -r requirements.txt
+    startCommand: pip install psycopg2-binary && python3 server.py
+    envVars:
+      - key: PYTHON_VERSION
+        value: "3.11"
+      - key: GITHUB_TOKEN
+        sync: false
+      - key: GITHUB_REPO
+        value: "sunyayiii/ccsun-todolist"
+      - key: GITHUB_BRANCH
+        value: "main"
+      - key: SYNC_INTERVAL
+        value: "600"
+      - key: DATABASE_URL
+        sync: false
+      - key: MIGRATE_JSON_TO_DB
+        sync: false
+    plan: free
+    autoDeploy: true
